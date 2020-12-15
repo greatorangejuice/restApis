@@ -1,10 +1,12 @@
-import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put} from "@nestjs/common";
+import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UseGuards} from "@nestjs/common";
 import {UsersService} from "./users.service";
 import {CreateUserDto} from "./dto/create-user.dto";
 import {User} from "./user.entity";
 import {DeleteResult} from "typeorm";
 import {UpdateUserDto} from "./dto/update-user.dto";
 import {GetUserDto} from "./dto/get-user.dto";
+import {JwtAuthGuard} from "../auth/jwt-auth.guard";
+import {LocalAuthGuard} from "../auth/local-auth.guard";
 
 @Controller('users')
 export class UsersController {
@@ -21,11 +23,13 @@ export class UsersController {
         return this.usersService.findOneByName(getUserDto.username);
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get()
     findAll(): Promise<User[]> {
         return this.usersService.findAll();
     }
 
+    @UseGuards(LocalAuthGuard)
     @Get(':id')
     findOne(@Param('id') id: string): Promise<User> {
         return this.usersService.findOne(id);
