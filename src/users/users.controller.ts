@@ -7,7 +7,7 @@ import {UpdateUserDto} from "./dto/update-user.dto";
 import {GetUserDto} from "./dto/get-user.dto";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {LocalAuthGuard} from "../auth/local-auth.guard";
-import {Role} from "../common/enums/role.enum";
+import {ERole} from "../common/enums/role.enum";
 import {Roles} from "../common/decorators/roles.decorator";
 
 @Controller('users')
@@ -27,7 +27,7 @@ export class UsersController {
 
     @UseGuards(JwtAuthGuard)
     @Get()
-    @Roles(Role.User)
+    @Roles(ERole.User)
     findAll(): Promise<User[]> {
         return this.usersService.findAll();
     }
@@ -40,7 +40,7 @@ export class UsersController {
 
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    @Roles(Role.Admin)
+    @Roles(ERole.Admin)
     remove(@Param('id') id: string): Promise<DeleteResult> {
         return this.usersService.remove(id);
     }

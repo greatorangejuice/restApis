@@ -1,5 +1,7 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Role} from "./user-roles.entity";
+import {IsEmail} from "class-validator";
+import {Task} from "../tasks/entities/task.entity";
 
 @Entity()
 export class User {
@@ -10,6 +12,7 @@ export class User {
     username: string;
 
     @Column()
+    @IsEmail()
     email: string;
 
     @Column()
@@ -18,4 +21,7 @@ export class User {
     @ManyToMany(() => Role)
     @JoinTable()
     roles: Role[];
+
+    @OneToMany(() => Task, task => task.id)
+    tasks: Task[]
 }

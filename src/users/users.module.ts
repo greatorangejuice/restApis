@@ -6,6 +6,7 @@ import {User} from "./user.entity";
 import {APP_GUARD} from "@nestjs/core";
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";
 import {Role} from "./user-roles.entity";
+import {InitialScriptController} from "../initial-script.controller";
 
 @Module({
     imports: [TypeOrmModule.forFeature([User, Role])],
