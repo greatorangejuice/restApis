@@ -9,7 +9,7 @@ export class AuthController {
     }
 
     @HttpCode(HttpStatus.OK)
-    // @UseGuards(LocalAuthGuard)
+    @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Request() req) {
         console.log(`REQ ${req}`)
