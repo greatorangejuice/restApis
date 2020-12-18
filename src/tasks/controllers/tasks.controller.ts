@@ -8,7 +8,7 @@ export class TasksController {
         private taskService: TasksService,
     ) {}
 
-    @Get(':id')
+    @Get('getOne/:id')
     getTask(@Param('id') id: number) {
         return this.taskService.getOneTaskById(id);
     }
@@ -21,6 +21,11 @@ export class TasksController {
     @Post()
     createTask(@Body() createTaskDto: CreateTaskDto) {
         return this.taskService.createTask(createTaskDto);
+    }
+
+    @Get('executor')
+    getTasks() {
+        return this.taskService.getUsersAllTasks(27)
     }
 
     updateTask() {

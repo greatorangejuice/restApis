@@ -12,10 +12,10 @@ import {InitialScriptController} from "../initial-script.controller";
     imports: [TypeOrmModule.forFeature([User, Role])],
     providers: [
         UsersService,
-        // {
-        //     provide: APP_GUARD,
-        //     useClass: JwtAuthGuard
-        // }
+        {
+            provide: APP_GUARD,
+            useClass: JwtAuthGuard
+        }
     ],
     controllers: [UsersController],
     exports: [UsersService]

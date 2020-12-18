@@ -32,7 +32,7 @@ export class UsersController {
         return this.usersService.findAll();
     }
 
-    @UseGuards(JwtAuthGuard)
+    // @UseGuards(JwtAuthGuard)
     @Get(':id')
     findOne(@Param('id') id: string): Promise<User> {
         return this.usersService.findOne(id);
@@ -49,4 +49,9 @@ export class UsersController {
     update(@Body() updateUserDto: UpdateUserDto, @Param('id') id: number) {
         return this.usersService.update(updateUserDto, id)
     }
+
+    // @Get('tasks')
+    // getTasks() {
+    //     return this.usersService.getUserTasks()
+    // }
 }

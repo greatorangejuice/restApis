@@ -4,7 +4,6 @@ import {Task} from "./entities/task.entity";
 import {TasksService} from "./services/tasks.service";
 import {TasksController} from "./controllers/tasks.controller";
 import {UsersModule} from "../users/users.module";
-import {UsersService} from "../users/users.service";
 
 @Module({
     imports: [
